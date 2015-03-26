@@ -21,7 +21,12 @@
         "incenteev/composer-parameter-handler": "~2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "phing/phing": "~2.10",
+        "phpunit/phpunit": "~4.5",
+        "squizlabs/php_codesniffer": "~2.3",
+        "phpmd/phpmd": "~2.2",
+        "sebastian/phpcpd": "~2.0"
     },
     "scripts": {
         "post-root-package-install": [

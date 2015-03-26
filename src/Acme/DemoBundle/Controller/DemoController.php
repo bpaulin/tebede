@@ -41,11 +41,9 @@ class DemoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $mailer = $this->get('mailer');
-
             // .. setup a message and send it
+            // $mailer = $this->get('mailer');
             // http://symfony.com/doc/current/cookbook/email.html
-
             $request->getSession()->getFlashBag()->set('notice', 'Message sent!');
 
             return new RedirectResponse($this->generateUrl('_demo'));

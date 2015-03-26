@@ -33,7 +33,11 @@ class DemoExtension extends \Twig_Extension
     {
         // highlight_string highlights php code only if '<?php' tag is present.
         $controller = highlight_string("<?php".$this->getControllerCode(), true);
-        $controller = str_replace('<span style="color: #0000BB">&lt;?php&nbsp;&nbsp;&nbsp;&nbsp;</span>', '&nbsp;&nbsp;&nbsp;&nbsp;', $controller);
+        $controller = str_replace(
+            '<span style="color: #0000BB">&lt;?php&nbsp;&nbsp;&nbsp;&nbsp;</span>',
+            '&nbsp;&nbsp;&nbsp;&nbsp;',
+            $controller
+        );
 
         $template = htmlspecialchars($this->getTemplateCode($template), ENT_QUOTES, 'UTF-8');
 
@@ -56,12 +60,15 @@ EOF;
             $class = ClassUtils::getUserClass($class);
         }
 
-        $r = new \ReflectionClass($class);
-        $m = $r->getMethod($this->controller[1]);
+        $ref = new \ReflectionClass($class);
+        $met = $ref->getMethod($this->controller[1]);
 
-        $code = file($r->getFilename());
+        $code = file($ref->getFilename());
 
-        return '    '.$m->getDocComment()."\n".implode('', array_slice($code, $m->getStartline() - 1, $m->getEndLine() - $m->getStartline() + 1));
+        return '    '.$met->getDocComment()."\n".implode(
+            '',
+            array_slice($code, $met->getStartline() - 1, $met->getEndLine() - $met->getStartline() + 1)
+        );
     }
 
     protected function getTemplateCode($template)

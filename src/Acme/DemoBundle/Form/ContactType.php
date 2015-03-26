@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class ContactType extends AbstractType
 {
+    /**
+     * @SuppressWarnings("unused")
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email', 'email');
