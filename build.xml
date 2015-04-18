@@ -19,11 +19,19 @@
         </exec>
     </target>
 
+    <target name="phpcbf">
+        <exec executable="./bin/phpcbf" passthru="true" checkreturn="true">
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg path="src/"/>
+        </exec>
+    </target>
+
     <target name="phpmd">
         <exec executable="./bin/phpmd" passthru="true" checkreturn="true">
             <arg path="src/"/>
             <arg value="text"/>
-            <arg value="codesize,unusedcode,naming"/>
+            <arg value="app/phpmd_rules.xml"/>
         </exec>
     </target>
 
